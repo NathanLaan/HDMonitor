@@ -24,8 +24,8 @@ namespace HDMonitor
         {
             InitializeComponent();
 
-            this.hdIconOn = new Icon("HD-ON.ico");
-            this.hdIconOff = new Icon("HD-OFF.ico");
+            this.hdIconOn = new Icon("HD-ON-32.ico");
+            this.hdIconOff = new Icon("HD-OFF-32.ico");
             this.hdNotifyIcon.Icon = this.hdIconOff;
             this.hdNotifyIcon.ContextMenuStrip = this.contextMenu;
 
@@ -51,12 +51,15 @@ namespace HDMonitor
         }
 
 
+        private bool showActivityNotificationBalloon = false;
+
 
         private void hdMonitorThreadExecute()
         {
             using (ManagementClass driveDataClass = new ManagementClass("Win32_PerfFormattedData_PerfDisk_PhysicalDisk"))
             {
                 ManagementObjectCollection driveDataClassList = driveDataClass.GetInstances();
+                object mgmtObj;
                 try
                 {
                     while (this.hdMonitorThreadRunning)
@@ -67,8 +70,13 @@ namespace HDMonitor
                             // We only want the "_Total" HD activity
                             if (managementObject["Name"].ToString() == "_Total")
                             {
-                                if (Convert.ToUInt64(managementObject[MANAGEMENT_OBJECT_DISK_READ]) > 0)
+                                mgmtObj = managementObject[MANAGEMENT_OBJECT_DISK_READ];
+                                if (Convert.ToUInt64(mgmtObj) > 0)
                                 {
+                                    if (showActivityNotificationBalloon)
+                                    {
+                                        this.hdNotifyIcon.ShowBalloonTip(2000, "HD Activity", mgmtObj.ToString(), ToolTipIcon.Info);
+                                    }
                                     this.hdNotifyIcon.Icon = hdIconOn;
                                 }
                                 else
@@ -90,6 +98,11 @@ namespace HDMonitor
                 }
             }
 
+        }
+
+        private void contextMenuShowNotification_Click(object sender, EventArgs e)
+        {
+            this.showActivityNotificationBalloon = this.contextMenuShowNotification.Checked;
         }
 
 

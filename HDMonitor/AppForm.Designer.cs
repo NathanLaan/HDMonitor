@@ -31,9 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.hdNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuShowNotification = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,28 +51,43 @@
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuTitle,
             this.contextMenuSeparator,
+            this.contextMenuShowNotification,
+            this.toolStripSeparator1,
             this.contextMenuExit});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(153, 76);
-            // 
-            // contextMenuExit
-            // 
-            this.contextMenuExit.Name = "contextMenuExit";
-            this.contextMenuExit.Size = new System.Drawing.Size(152, 22);
-            this.contextMenuExit.Text = "E&xit";
-            this.contextMenuExit.Click += new System.EventHandler(this.contextMenuExit_Click);
-            // 
-            // contextMenuSeparator
-            // 
-            this.contextMenuSeparator.Name = "contextMenuSeparator";
-            this.contextMenuSeparator.Size = new System.Drawing.Size(149, 6);
+            this.contextMenu.Size = new System.Drawing.Size(193, 104);
             // 
             // contextMenuTitle
             // 
             this.contextMenuTitle.Enabled = false;
             this.contextMenuTitle.Name = "contextMenuTitle";
-            this.contextMenuTitle.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuTitle.Size = new System.Drawing.Size(180, 22);
             this.contextMenuTitle.Text = "HD Monitor";
+            // 
+            // contextMenuSeparator
+            // 
+            this.contextMenuSeparator.Name = "contextMenuSeparator";
+            this.contextMenuSeparator.Size = new System.Drawing.Size(177, 6);
+            // 
+            // contextMenuExit
+            // 
+            this.contextMenuExit.Name = "contextMenuExit";
+            this.contextMenuExit.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuExit.Text = "E&xit";
+            this.contextMenuExit.Click += new System.EventHandler(this.contextMenuExit_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // contextMenuShowNotification
+            // 
+            this.contextMenuShowNotification.CheckOnClick = true;
+            this.contextMenuShowNotification.Name = "contextMenuShowNotification";
+            this.contextMenuShowNotification.Size = new System.Drawing.Size(192, 22);
+            this.contextMenuShowNotification.Text = "Show HD Activity Rate";
+            this.contextMenuShowNotification.Click += new System.EventHandler(this.contextMenuShowNotification_Click);
             // 
             // AppForm
             // 
@@ -96,6 +113,8 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuExit;
         private System.Windows.Forms.ToolStripSeparator contextMenuSeparator;
         private System.Windows.Forms.ToolStripMenuItem contextMenuTitle;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuShowNotification;
     }
 }
 
