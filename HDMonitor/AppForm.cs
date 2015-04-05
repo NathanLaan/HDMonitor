@@ -19,13 +19,23 @@ namespace HDMonitor
         private bool hdMonitorThreadRunning = false;
         private Thread hdMonitorThread;
 
+        private static readonly Icon hd_blue = new Icon("Icons/HD32-blue.ico");
+        private static readonly Icon hd_cyan = new Icon("Icons/HD32-cyan.ico");
+        private static readonly Icon hd_green = new Icon("Icons/HD32-green.ico");
+        private static readonly Icon hd_red = new Icon("Icons/HD32-red.ico");
+        private static readonly Icon hd_white = new Icon("Icons/HD32-white.ico");
+        private static readonly Icon hd_yellow = new Icon("Icons/HD32-yellow.ico");
+
 
         public AppForm()
         {
             InitializeComponent();
 
-            this.hdIconOn = new Icon("HD-ON-32.ico");
-            this.hdIconOff = new Icon("HD-OFF-32.ico");
+            //this.hdIconOn = new Icon("HD-ON-32.ico");
+            //this.hdIconOff = new Icon("HD-OFF-32.ico");
+            this.hdIconOn = hd_green;
+            this.hdIconOff = hd_white;
+            this.contextMenuIconColorGreen.Checked = true;
             this.hdNotifyIcon.Icon = this.hdIconOff;
             this.hdNotifyIcon.ContextMenuStrip = this.contextMenu;
 
@@ -91,6 +101,9 @@ namespace HDMonitor
                 }
                 catch (ThreadAbortException exception)
                 {
+                    //
+                    // TODO: logging...?
+                    //
                 }
                 finally
                 {
@@ -103,6 +116,42 @@ namespace HDMonitor
         private void contextMenuShowNotification_Click(object sender, EventArgs e)
         {
             this.showActivityNotificationBalloon = this.contextMenuShowNotification.Checked;
+        }
+
+        private void contextMenuIconColorBlue_Click(object sender, EventArgs e)
+        {
+            this.contextMenuIconColorBlue.Checked = true;
+            this.contextMenuIconColorCyan.Checked = false;
+            this.contextMenuIconColorGreen.Checked = false;
+            this.contextMenuIconColorRed.Checked = false;
+            this.hdIconOn = AppForm.hd_blue;
+        }
+
+        private void contextMenuIconColorCyan_Click(object sender, EventArgs e)
+        {
+            this.contextMenuIconColorBlue.Checked = false;
+            this.contextMenuIconColorCyan.Checked = true;
+            this.contextMenuIconColorGreen.Checked = false;
+            this.contextMenuIconColorRed.Checked = false;
+            this.hdIconOn = AppForm.hd_cyan;
+        }
+
+        private void contextMenuIconColorGreen_Click(object sender, EventArgs e)
+        {
+            this.contextMenuIconColorBlue.Checked = false;
+            this.contextMenuIconColorCyan.Checked = false;
+            this.contextMenuIconColorGreen.Checked = true;
+            this.contextMenuIconColorRed.Checked = false;
+            this.hdIconOn = AppForm.hd_green;
+        }
+
+        private void contextMenuIconColorRed_Click(object sender, EventArgs e)
+        {
+            this.contextMenuIconColorBlue.Checked = false;
+            this.contextMenuIconColorCyan.Checked = false;
+            this.contextMenuIconColorGreen.Checked = false;
+            this.contextMenuIconColorRed.Checked = true;
+            this.hdIconOn = AppForm.hd_red;
         }
 
 
